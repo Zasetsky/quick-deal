@@ -37,6 +37,7 @@
         type="text"
         placeholder="New task name"
         class="task__edit-input"
+        @click.stop
       />
       <button @click.stop="updateTask" class="task__button task__button--save">
         Save
