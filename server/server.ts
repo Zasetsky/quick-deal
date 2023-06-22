@@ -50,12 +50,15 @@ app.post('/tasks', async (req: Request, res: Response) => {
 });
 
 app.put('/tasks/:id', async (req: Request, res: Response) => {
-  if (!req.body.name) {
-    return res.status(400).send({ message: 'Task name cannot be empty' });
-  }
-
   try {
-    const updatedTask = await Task.updateOne({ _id: req.params.id }, { name: req.body.name, completed: req.body.completed });
+    const updatedTask = await Task.findByIdAndUpdate(
+      req.params.id,
+      { name: req.body.name, completed: req.body.completed },
+      { new: true }
+    );
+    if (!updatedTask) {
+      return res.status(404).send({ message: 'Task not found' });
+    }
     res.send(updatedTask);
   } catch (err: any) {
     res.status(500).send({ message: err.message });

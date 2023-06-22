@@ -61,7 +61,11 @@ export default createStore({
         `http://localhost:3000/tasks/${task._id}`,
         task
       );
-      commit("updateTask", response.data);
+      if (response.status === 200) {
+        commit("updateTask", task);
+      } else {
+        console.error("Failed to update task", response);
+      }
     },
   },
   modules: {},

@@ -11,7 +11,7 @@
       <button type="submit">Add task</button>
     </form>
     <ul v-if="!loading">
-      <TaskItem v-for="task in tasks" :key="task._id" :task="task" />
+      <TaskItem v-for="task in tasks" :key="task._id" :taskProp="task" />
     </ul>
     <h4 v-else>Идёт загрузка...</h4>
   </div>
