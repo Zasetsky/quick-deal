@@ -87,6 +87,7 @@ export default defineComponent({
   &__empty-message {
     text-align: center;
     color: #888;
+    margin-top: 1.5rem;
   }
 
   &__list {
